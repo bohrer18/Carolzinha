@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Convite pra Carolzinha 🖤</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      height: 100%;
+    }
+    body {
+      background-color: #0a0a0a;
+      color: #d6d6d6;
+      font-family: 'Roboto Mono', monospace;
+      overflow-y: auto;
+      position: relative;
+    }
+    header {
+      background-color: #0f0f0f;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-family: 'UnifrakturCook', cursive;
+      font-size: 2.5rem;
+      color: #a80000;
+      position: relative;
+      z-index: 2;
+    }
+    .page {
+      display: none;
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+    .active {
+      display: block;
+    }
+    .opcao {
+      background-color: #1a1a1aee;
+      border-left: 4px solid #a80000;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .opcao h2 {
+      color: #a80000;
+      margin-top: 0;
+    }
+    .btn-container {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    button {
+      background-color: #a80000;
+      border: none;
+      color: white;
+      padding: 0.75rem 2rem;
+      margin: 0.5rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s;
+    }
+    button:hover {
+      background-color: #770000;
+      transform: scale(1.05);
+    }
+    footer {
+      text-align: center;
+      margin: 2rem 0;
+      font-size: 0.9rem;
+      color: #666;
+      position: relative;
+      z-index: 2;
+    }
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+  <header>
+    Convite pra Carolzinha 🖤
+  </header>
+
+  <div id="page1" class="page active">
+    <p style="text-align:center">Oi <strong>Carolzinha</strong>, separei 5 ideias de rolês que têm a nossa cara. Escolhe qual tu topa ou deixa eu te surpreender 😈</p>
+    <div class="btn-container">
+      <button onclick="nextPage()">Ver as opções de date ➜</button>
+    </div>
+  </div>
+
+  <div id="page2" class="page">
+    <div class="opcao" onclick="selectDate('Cabana em Pomerode')">
+      <h2>1. Fim de semana numa cabana em Pomerode</h2>
+      <p>Cabana com vista, banheira e isolamento. Pós: hamburgão artesanal e pub rock.</p>
+    </div>
+    <div class="opcao" onclick="selectDate('Acampamento Leão da Montanha')">
+      <h2>2. Acampamento no Leão da Montanha</h2>
+      <p>Trilha leve, céu estrelado e rave com Matuê. Natureza + som pesado.</p>
+    </div>
+    <div class="opcao" onclick="selectDate('Camping Mirante do Vale')">
+      <h2>3. Camping Mirante do Vale</h2>
+      <p>Pôr do sol, fogueira e trilha sonora underground. Café retrô ou só céu estrelado.</p>
+    </div>
+    <div class="opcao" onclick="selectDate('Churrasco no Parque do Jaraguá')">
+      <h2>4. Churrasco raiz no Parque do Jaraguá</h2>
+      <p>Carne ao ponto, mate gelado e trilha pra ver a cidade de cima.</p>
+    </div>
+    <div class="opcao" onclick="selectDate('Rolê gótico urbano + natureza')">
+      <h2>5. Rolê gótico urbano + natureza</h2>
+      <p>Café com gatos pretos, bar dark e caminhada pelo CIMA. Teu mundo.</p>
+    </div>
+    <div class="btn-container">
+      <button onclick="prevPage()">⬅ Voltar</button>
+    </div>
+  </div>
+
+  <div id="page3" class="page">
+    <p style="text-align:center">Você escolheu: <strong id="escolha"></strong></p>
+    <p style="text-align:center">Agora é só me dizer o dia, e a gente faz esse rolê acontecer 🖤</p>
+    <div class="btn-container">
+      <button onclick="alert('Então se prepara, Carolzinha! Vai ser épico!')">Fechar com esse rolê 🖤</button>
+      <button onclick="prevPage()">⬅ Voltar</button>
+    </div>
+  </div>
+
+  <footer>
+    Feito com café, código e coragem 🖤
+  </footer>
+
+  <script>
+    let currentPage = 1;
+    let escolha = '';
+
+    function showPage(n) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(`page${n}`).classList.add('active');
+      currentPage = n;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function nextPage() {
+      showPage(currentPage + 1);
+    }
+    function prevPage() {
+      showPage(currentPage - 1);
+    }
+    function selectDate(option) {
+      escolha = option;
+      document.getElementById('escolha').textContent = option;
+      showPage(3);
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+        "color": { "value": "#a80000" },
+        "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000" } },
+        "opacity": { "value": 0.3, "random": true },
+        "size": { "value": 4, "random": true },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#770000",
+          "opacity": 0.2,
+          "width": 1
+        },
+        "move": { "enable": true, "speed": 2, "out_mode": "out" }
+      },
+      "interactivity": {
+        "events": {
+          "onhover": { "enable": true, "mode": "repulse" },
+          "onclick": { "enable": true, "mode": "push" },
+          "resize": true
+        },
+        "modes": {
+          "repulse": { "distance": 100 },
+          "push": { "particles_nb": 4 }
+        }
+      },
+      "retina_detect": true
+    });
+  </script>
+</body>
+</html>
